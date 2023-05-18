@@ -57,6 +57,7 @@ const { $reset } = store; // actions can just be destructured
   font-weight: 800;
   text-align: center;
   text-transform: uppercase;
+  user-select: none;
 }
 
 .button-helper-text {

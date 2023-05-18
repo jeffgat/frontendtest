@@ -24,6 +24,7 @@ const getHighlightPosition = (highlight: string) => {
 };
 
 const handleClick = (e: MouseEvent) => {
+  e.stopPropagation();
   // get dimensions and click position
   const chessBoardEl = e.target as HTMLElement;
   const area = chessBoardEl.getBoundingClientRect();
