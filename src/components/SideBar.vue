@@ -6,7 +6,7 @@
 
 <template>
   <div class="board-layout-sidebar">
-    <div class="board-layout-sidebar-content">SIDEBAR</div>
+    <div class="board-layout-sidebar-content">Click History</div>
   </div>
 </template>
 
