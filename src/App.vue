@@ -1,23 +1,30 @@
 <script setup lang="ts">
-import Board from './components/Board.vue';
-import './assets/globals.scss';
+import { Board, SideBar } from '@/components';
+import '@/assets/globals.scss';
 </script>
 
 <template>
-  <Board msg="CHESS BOARD" />
+  <main>
+    <div class="board-layout">
+      <Board msg="CHESS BOARD" />
+      <SideBar />
+    </div>
+  </main>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style scoped lang="scss">
+.board-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 4rem;
+  height: calc(100vh - 8rem);
+
+  @media (max-width: 960px) {
+    height: 100%;
+    flex-direction: column;
+    margin: 2rem;
+  }
 }
 </style>
