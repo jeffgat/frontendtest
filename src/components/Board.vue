@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// ("setup" lets us defineProps instead of the component, exposes everything to the template. don't need to return our props.)
+// "setup" lets us defineProps instead of the component, exposes everything to the template. don't need to return our props.
 // is also preferable for typescript
-import { Coordinates } from '@/components';
+import { BoardCoordinates } from '@/components';
 import { useBoardStore } from '@/stores/board';
 import { storeToRefs } from 'pinia';
 
@@ -11,6 +11,8 @@ const NUMBERS = ['8', '7', '6', '5', '4', '3', '2', '1'];
 
 const store = useBoardStore();
 const { highlighted } = storeToRefs(store); // need storeToRefs to preserve reactivity
+// const { highlighted } = storeToRefs(store); // need storeToRefs to preserve reactivity
+
 const { saveClick } = store; // actions can just be destructured
 
 const getHighlightPosition = (highlight: string) => {
@@ -44,7 +46,8 @@ const handleClick = (e: MouseEvent) => {
 <template>
   <div class="board-layout-chessboard">
     <div class="board" @click="handleClick">
-      <Coordinates />
+      <BoardCoordinates />
+      <!-- when a ref is passed into a template, vue unwraps it automatically. this is why this works. -->
       <div class="highlight" v-for="h in highlighted" :style="getHighlightPosition(h)" />
     </div>
   </div>
@@ -67,6 +70,7 @@ const handleClick = (e: MouseEvent) => {
 .board {
   position: relative;
   width: inherit;
+  // need to maintain image size and for math to work
   aspect-ratio: 1 / 1;
   border-radius: 3px;
   background-image: url('../assets/board.png');

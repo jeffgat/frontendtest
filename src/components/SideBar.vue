@@ -1,12 +1,24 @@
 <script setup lang="ts">
-// import { ref } from 'vue';
+import { SideBarHistory } from '@/components';
+import { Button } from '@/components/common';
+import { useBoardStore } from '@/stores/board';
+
+const store = useBoardStore();
+const { $reset } = store; // actions can just be destructured
 
 // const count = ref(0);
 </script>
 
 <template>
   <div class="board-layout-sidebar">
-    <div class="board-layout-sidebar-content">Click History</div>
+    <div class="sidebar-content">
+      <h3 class="sidebar-title">Click History</h3>
+      <SideBarHistory />
+      <div>
+        <Button variant="primary" text="Clear" :action="$reset" />
+        <span class="button-helper-text">Clears click history and all highlighted tiles</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,7 +38,31 @@
     min-width: 0;
   }
 }
-.board-layout-sidebar-content {
-  padding: 4rem;
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  height: calc(100% - 4rem);
+}
+
+.sidebar-title {
+  margin: 0;
+  width: 100%;
+  padding-bottom: 2rem;
+  border-bottom: solid 1px var(--globalTertiaryBackground);
+  color: var(--globalColorThemeHigh);
+  font-size: 2.4rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.button-helper-text {
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+  opacity: 0.6;
 }
 </style>

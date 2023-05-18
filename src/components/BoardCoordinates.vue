@@ -21,14 +21,13 @@
 
 <style scoped lang="scss">
 .coordinates {
-  left: 0;
   position: absolute;
-  top: 0;
+  z-index: 1;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+  pointer-events: none;
 }
-
 .coordinate-dark {
   font-weight: 600;
   fill: #f0d9b5;
