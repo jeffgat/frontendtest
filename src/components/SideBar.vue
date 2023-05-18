@@ -4,9 +4,7 @@ import { Button } from '@/components/common';
 import { useBoardStore } from '@/stores/board';
 
 const store = useBoardStore();
-const { $reset } = store; // actions can just be destructured
-
-// const count = ref(0);
+const { $reset } = store;
 </script>
 
 <template>

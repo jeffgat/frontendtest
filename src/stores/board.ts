@@ -9,7 +9,7 @@ export const useBoardStore = defineStore('board', () => {
     clicked.value = [...clicked.value, square];
 
     if (highlighted.value.includes(square)) {
-      highlighted.value = highlighted.value.filter((h) => h !== square);
+      highlighted.value.splice(highlighted.value.indexOf(square), 1);
     } else {
       highlighted.value = [...highlighted.value, square];
     }

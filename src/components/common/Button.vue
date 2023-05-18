@@ -25,16 +25,19 @@ defineProps<{
   max-width: 100%;
   width: 100%;
   cursor: pointer;
-  &.primary {
-    background-color: #dbd9d7;
-    color: #666463;
-  }
+
   &:hover {
     background-color: #e7e6e5;
   }
+
   &:active {
     color: #474544;
     background-color: #c6c4c3;
+  }
+
+  &.primary {
+    background-color: #dbd9d7;
+    color: #666463;
   }
 }
 </style>

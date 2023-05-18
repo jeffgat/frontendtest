@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// "setup" lets us defineProps instead of the component, exposes everything to the template. don't need to return our props.
-// is also preferable for typescript
 import { BoardCoordinates } from '@/components';
 import { useBoardStore } from '@/stores/board';
 import { storeToRefs } from 'pinia';
@@ -10,10 +8,8 @@ const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 const NUMBERS = ['8', '7', '6', '5', '4', '3', '2', '1'];
 
 const store = useBoardStore();
-const { highlighted } = storeToRefs(store); // need storeToRefs to preserve reactivity
-// const { highlighted } = storeToRefs(store); // need storeToRefs to preserve reactivity
-
-const { saveClick } = store; // actions can just be destructured
+const { highlighted } = storeToRefs(store);
+const { saveClick } = store;
 
 const getHighlightPosition = (highlight: string) => {
   const rowIdx = LETTERS.indexOf(highlight[0]);
@@ -24,7 +20,6 @@ const getHighlightPosition = (highlight: string) => {
 };
 
 const handleClick = (e: MouseEvent) => {
-  e.stopPropagation();
   // get dimensions and click position
   const chessBoardEl = e.target as HTMLElement;
   const area = chessBoardEl.getBoundingClientRect();
@@ -48,14 +43,12 @@ const handleClick = (e: MouseEvent) => {
   <div class="board-layout-chessboard">
     <div class="board" @click="handleClick">
       <BoardCoordinates />
-      <!-- when a ref is passed into a template, vue unwraps it automatically. this is why this works. -->
       <div class="highlight" v-for="h in highlighted" :style="getHighlightPosition(h)" />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-// need a container to maintain the aspect ratio while resizing
 .board-layout-chessboard {
   display: flex;
   align-items: center;
@@ -71,7 +64,6 @@ const handleClick = (e: MouseEvent) => {
 .board {
   position: relative;
   width: inherit;
-  // need to maintain image size and for math to work
   aspect-ratio: 1 / 1;
   border-radius: 3px;
   background-image: url('../assets/board.png');
@@ -85,7 +77,6 @@ const handleClick = (e: MouseEvent) => {
   width: 12.5%;
   background-color: var(--globalColorHighlight);
   opacity: 0.5;
-  // need to let pointer events pass through to parent
   pointer-events: none;
 }
 </style>
