@@ -4,7 +4,6 @@ import { storeToRefs } from 'pinia';
 
 const store = useBoardStore();
 const { clicked } = storeToRefs(store);
-console.log('clicked', clicked);
 </script>
 
 <template>
